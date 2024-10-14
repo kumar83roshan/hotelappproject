@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'screens/login_screen.dart'; 
+import 'screens/request_list_screen.dart';
+import 'screens/request_detail_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,9 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginScreen(),
-        '/requests': (context) => RequestListScreen(),
-        '/request-detail': (context) => RequestDetailScreen(),
+        '/': (context) => const LoginScreen(),
+        '/requests': (context) => const RequestListScreen(),
+        '/request-detail': (context) => const RequestDetailScreen(),
       },
     );
   }

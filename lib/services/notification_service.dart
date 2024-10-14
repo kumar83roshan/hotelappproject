@@ -10,14 +10,19 @@ class NotificationService {
     const InitializationSettings initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid);
 
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
   static void showNotification(String title, String body) {
     const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
-        'channelId', 'channelName', 'channelDescription');
+        'channelId', 'channelName', channelDescription: 'channelDescription');
     const NotificationDetails notificationDetails = NotificationDetails(android: androidDetails);
 
     flutterLocalNotificationsPlugin.show(0, title, body, notificationDetails);
   }
 }
+
+
+
+
+

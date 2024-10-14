@@ -1,8 +1,14 @@
+// lib/models/request.dart
+// lib/providers/request_provider.dart
+
+// Import the Request model
+
+
 class Request {
   final String id;
   final String guestName;
   final String description;
-  final bool isCompleted;
+  bool isCompleted;
 
   Request({
     required this.id,
