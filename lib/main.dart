@@ -4,7 +4,7 @@ import 'screens/request_list_screen.dart';
 import 'screens/request_detail_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginScreen(),
-        '/requests': (context) => const RequestListScreen(),
+        '/requests': (context) =>  RequestListScreen(),
         '/request-detail': (context) => const RequestDetailScreen(),
       },
     );
