@@ -1,142 +1,66 @@
 import 'package:flutter/material.dart';
 
 class RequestListScreen extends StatelessWidget {
-  // Constructor no longer marked as const because 'requests' is not constant
-  RequestListScreen({super.key});
+  final String username;
+  final String hotelName;
+  final String hotelLogo;
 
-  // Sample request data (non-constant)
-  final List<Map<String, String>> requests = [
-    {
-      'room': '101',
-      'guest': 'John Doe',
-      'detail': 'Need extra towels',
-    },
-    {
-      'room': '202',
-      'guest': 'Jane Smith',
-      'detail': 'Room cleaning request',
-    },
-    {
-      'room': '303',
-      'guest': 'Alice Johnson',
-      'detail': 'Require dinner service',
-    },
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Guest Requests'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: requests.length,
-          itemBuilder: (context, index) {
-            final request = requests[index];
-            return RequestCard(
-              roomNo: request['room']!,
-              guestName: request['guest']!,
-              requestDetail: request['detail']!,
-              onAttend: () {
-                // Handle attend action
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Attending request for room ${request['room']}")));
-              },
-              onReject: () {
-                // Handle reject action
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Rejected request for room ${request['room']}")));
-              },
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-// Widget for a single request card
-class RequestCard extends StatelessWidget {
-  final String roomNo;
-  final String guestName;
-  final String requestDetail;
-  final VoidCallback onAttend;
-  final VoidCallback onReject;
-
-  const RequestCard({
+  const RequestListScreen({
     super.key,
-    required this.roomNo,
-    required this.guestName,
-    required this.requestDetail,
-    required this.onAttend,
-    required this.onReject,
+    required this.username,
+    required this.hotelName,
+    required this.hotelLogo,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Room Number and Guest Name
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    // Sample data
+    final List<Map<String, dynamic>> requests = [
+      {
+        'roomNo': '101',
+        'guestName': 'John Doe',
+        'details': 'Need extra towels',
+        'status': 'Pending',
+      },
+      {
+        'roomNo': '102',
+        'guestName': 'Jane Smith',
+        'details': 'Room cleaning request',
+        'status': 'Accepted',
+      },
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Requests'),
+      ),
+      body: ListView.builder(
+        itemCount: requests.length,
+        itemBuilder: (context, index) {
+          final request = requests[index];
+          return ListTile(
+            title: Text('Room: ${request['roomNo']} - ${request['guestName']}'),
+            subtitle: Text(request['details']),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Room: $roomNo',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle accept action
+                  },
+                  child: const Text('Accept'),
                 ),
-                Text(
-                  guestName,
-                  style: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 16,
-                  ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle reject action
+                  },
+                  child: const Text('Reject'),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            // Request Details
-            Text(
-              requestDetail,
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 16),
-            // Buttons to attend or reject the request
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                OutlinedButton.icon(
-                  onPressed: onReject,
-                  icon: const Icon(Icons.cancel, color: Colors.red),
-                  label: const Text('Reject'),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.red,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                ElevatedButton.icon(
-                  onPressed: onAttend,
-                  icon: const Icon(Icons.check_circle, color: Colors.white),
-                  label: const Text('Attend'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
+          );
+        },
       ),
     );
   }
