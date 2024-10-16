@@ -25,15 +25,15 @@ class LoginScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Image.asset(
-                    'assets/logo.png', // Path to your logo
-                    height: 50, // Adjust height as necessary
+                    'assets/images/logo.png', // Path to your logo
+                    height: 25, // Adjust height as necessary
                   ),
                 ),
                 Expanded(
                   child: Text(
                     'Radisson Individual', // Hotel name
                     textAlign: TextAlign.right, // Align text to the right
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                     builder: (context) => RequestListScreen(
                       username: username,
                       hotelName: 'Radisson Individual',
-                      hotelLogo: 'assets/logo.png',
+                      hotelLogo: 'assets/images/logo.png',
                     ),
                   ),
                 );

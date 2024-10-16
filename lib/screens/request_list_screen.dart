@@ -38,7 +38,7 @@ class RequestListScreen extends StatelessWidget {
             Text(hotelName),  // Hotel name on the left
             Text('Staff: $username'),  // Staff name in the center
             Image.asset(
-              hotelLogo,
+              hotelLogo,  // Use the hotelLogo path passed as a parameter
               height: 40,  // Adjust the logo size as needed
             ),  // Hotel logo on the right
           ],
