@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'request_list_screen.dart'; // Adjust import to match structure
+import 'request_list_screen.dart'; // Adjust import to match your structure
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,6 +18,27 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Displaying hotel logo and name
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Image.asset(
+                    'assets/logo.png', // Path to your logo
+                    height: 50, // Adjust height as necessary
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    'Radisson Individual', // Hotel name
+                    textAlign: TextAlign.right, // Align text to the right
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20), // Space between header and input fields
             TextField(
               controller: usernameController,
               decoration: const InputDecoration(
@@ -40,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => RequestListScreen(
                       username: username,
-                      hotelName: 'Radission Individual',
+                      hotelName: 'Radisson Individual',
                       hotelLogo: 'assets/logo.png',
                     ),
                   ),

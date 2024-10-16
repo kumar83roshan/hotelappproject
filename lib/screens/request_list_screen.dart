@@ -32,35 +32,39 @@ class RequestListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Requests'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(hotelName),  // Hotel name on the left
+            Text('Staff: $username'),  // Staff name in the center
+            Image.asset(
+              hotelLogo,
+              height: 40,  // Adjust the logo size as needed
+            ),  // Hotel logo on the right
+          ],
+        ),
       ),
-      body: ListView.builder(
-        itemCount: requests.length,
-        itemBuilder: (context, index) {
-          final request = requests[index];
-          return ListTile(
-            title: Text('Room: ${request['roomNo']} - ${request['guestName']}'),
-            subtitle: Text(request['details']),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ElevatedButton(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: requests.length,
+          itemBuilder: (context, index) {
+            final request = requests[index];
+            return Card(  // Optional: Use a Card for better aesthetics
+              margin: const EdgeInsets.symmetric(vertical: 8.0),
+              child: ListTile(
+                title: Text('Room: ${request['roomNo']} - ${request['guestName']}'),
+                subtitle: Text(request['details']),
+                trailing: ElevatedButton(
                   onPressed: () {
                     // Handle accept action
                   },
                   child: const Text('Accept'),
                 ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle reject action
-                  },
-                  child: const Text('Reject'),
-                ),
-              ],
-            ),
-          );
-        },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
